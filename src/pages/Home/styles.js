@@ -27,11 +27,22 @@ export const Brand = styled.div`
   border-bottom-style: solid;
   border-bottom-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+
+  > h1 {
+    font-size: 24px;
+    color: ${({ theme }) => theme.COLORS.PURPLE};
+  }
 `;
 
 export const Menu = styled.ul`
   grid-area: menu;
-  background: green;
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+
+  padding-top: 64px;
+  text-align: center;
+  > li {
+    margin-bottom: 24px;
+  }
 `;
 
 export const Search = styled.div`
