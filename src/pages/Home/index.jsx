@@ -13,7 +13,7 @@ export function Home(){
     return(
         <Container>
             <Brand>
-            <h1>K$GNotes</h1>
+            <h1>K$G Notes</h1>
             </Brand>
 
             <Header />
