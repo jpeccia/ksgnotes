@@ -7,3 +7,5 @@ export function Tag({ title }){
         </Container>
     )
 }
+
+Tag.propTypes;

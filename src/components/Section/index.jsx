@@ -8,3 +8,5 @@ export function Section({ title, children}){
         </Container>
     );
 }
+
+Section.propTypes;
