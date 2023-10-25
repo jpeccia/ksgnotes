@@ -1,4 +1,4 @@
-import { Container, Links } from './styles';
+import { Container, Links, Content } from './styles';
 
 import { Tag } from '../../components/Tag';
 import { Button } from '../../components/Button';
@@ -14,8 +14,19 @@ export function Details(){
     <Container>
     <Header />
 
+    <main>
+      <Content>
     <ButtonText title="Excluir nota" />
 
+    <h1>
+      Introdução ao React
+    </h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+      Dolores itaque neque aut officiis id vel soluta laborum, 
+      ipsam optio praesentium beatae minima amet, 
+      recusandae pariatur deserunt illum vitae voluptatum. Animi!
+    </p>
     <Section title="Links úteis">
         <Links>
           <li>
@@ -33,6 +44,8 @@ export function Details(){
     </Section>
 
     <Button title="Voltar" />
+    </Content>
+    </main>
     </Container>
   )
 }
