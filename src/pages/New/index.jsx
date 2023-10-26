@@ -22,7 +22,7 @@ export function New(){
                     <Textarea placeholder="Observações"/>
                     <Section title="Links úteis">
                         <NoteItem value="https>//teste.com"/>
-                        <NoteItem isnew/>
+                        <NoteItem isNew/>
 
                     </Section>
 
