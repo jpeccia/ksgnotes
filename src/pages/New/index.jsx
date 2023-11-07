@@ -62,6 +62,7 @@ export function New(){
             links
         });
 
+
         alert("Nota criada com sucesso!");
         navigate("/");
     }
