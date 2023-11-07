@@ -21,7 +21,7 @@ export function Details(){
   const navigate = useNavigate();
 
   function handleBack(){
-    navigate("/");
+    navigate(-1);
   }
 
   async function handleRemove(){
@@ -29,7 +29,7 @@ export function Details(){
 
     if(confirm){
       await api.delete(`/notes/${params.id}`);
-      navigate("/");
+      navigate(-1);
       toast.success("Nota removida com sucesso!")
     }
   }
@@ -69,7 +69,10 @@ export function Details(){
           {
             data.links.map(link => (
             <li key ={String(link.id)}>
-              <a href={link.url}>{link.url}</a>
+              <a
+              href={link.url}
+
+              >{link.url}</a>
             </li>
             ))
           }
