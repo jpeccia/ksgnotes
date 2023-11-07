@@ -1,4 +1,8 @@
 import { Container, Links, Content } from './styles';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState, } from 'react';
+
+import { api } from '../../services/api';
 
 import { Tag } from '../../components/Tag';
 import { Button } from '../../components/Button';
@@ -9,43 +13,89 @@ import { ButtonText } from '../../components/ButtonText';
 
 
 export function Details(){
+  const [data, setData] = useState(null);
+
+  const params = useParams();
+  const navigate = useNavigate();
+
+  function handleBack(){
+    navigate("/");
+  }
+
+  async function handleRemove(){
+    const confirm = window.confirm("Deseja realmente remover essa nota?");
+
+    if(confirm){
+      await api.delete(`/notes/${params.id}`);
+      navigate("/");
+    }
+  }
+
+  useEffect(() => {
+    async function fetchNote(){
+      const response = await api.get(`/notes/${params.id}`)
+      setData(response.data)
+    }
+    fetchNote();
+  }, [])
+
 
   return (
     <Container>
     <Header />
-
+    {
+     data &&
     <main>
       <Content>
-    <ButtonText title="Excluir nota" />
+    <ButtonText 
+    title="Excluir nota" 
+    onClick={handleRemove}
+    />
 
     <h1>
-      Introdução ao React
+      {data.notes.title}
     </h1>
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Dolores itaque neque aut officiis id vel soluta laborum, 
-      ipsam optio praesentium beatae minima amet, 
-      recusandae pariatur deserunt illum vitae voluptatum. Animi!
+      {data.notes.description}
     </p>
+
+{
+    data.links &&
     <Section title="Links úteis">
         <Links>
-          <li>
-            <a href="#">https://github.com/jpeccia</a>
-          </li>
-          <li>
-            <a href="#">https://github.com/jpeccia</a>
-          </li>  
+          {
+            data.links.map(link => (
+            <li key ={String(link.id)}>
+              <a href={link.url}>{link.url}</a>
+            </li>
+            ))
+          }
+
         </Links>
     </Section>
+}
 
+{
+  data.tags &&
     <Section title="Marcadores">
-      <Tag title="express" />
-      <Tag title="node" />
+      {
+        data.tags.map(tag =>(
+          <Tag
+          key={String(tag.id)}
+          title={tag.name}
+          />
+        ))
+      }
     </Section>
+}
 
-    <Button title="Voltar" />
+    <Button 
+    title="Voltar" 
+    onClick={handleBack}
+    />
     </Content>
     </main>
+    }
     </Container>
   )
 }
