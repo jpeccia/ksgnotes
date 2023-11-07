@@ -2,6 +2,8 @@ import { Container, Links, Content } from './styles';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState, } from 'react';
 
+import { toast } from 'react-toastify';
+
 import { api } from '../../services/api';
 
 import { Tag } from '../../components/Tag';
@@ -28,6 +30,7 @@ export function Details(){
     if(confirm){
       await api.delete(`/notes/${params.id}`);
       navigate("/");
+      toast.success("Nota removida com sucesso!")
     }
   }
 
