@@ -19,6 +19,10 @@ export function Home(){
     const [notes, setNotes] = useState([]);
 
     function handleTagSelected(tagName){
+        if(tagName === "all"){
+            return setTagsSelected([]);
+        }
+
         const alreadySelected = tagsSelected.includes(tagName);
 
         if (alreadySelected) {
